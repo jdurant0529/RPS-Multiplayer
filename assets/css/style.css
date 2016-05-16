@@ -2,12 +2,23 @@
   max-width:1000px;
   margin: 0 auto;
 }
-
+body { 
+  background: url(../images/rps-logo.PNG);
+  background-size:100%;
+}
 header{
   margin: 0 auto;
   text-align: center;
 }
 
+.chat-box{
+  background-color: white;
+  min-height: 100px;
+  border-bottom-color: #2F4F4F;
+  border-bottom: 5px;
+  clear:both;
+  border-style: solid;
+}
 
 footer{
   width:100%;
