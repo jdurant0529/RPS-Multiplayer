@@ -3,14 +3,19 @@
   margin: 0 auto;
 }
 body { 
-  background: url(../images/rps-logo.png);
-  background-size:100%;
+  /*background: url(../images/rps-logo.png);*/
+  /*background-size:100%;*/
 }
 header{
   margin: 0 auto;
   text-align: center;
 }
 
+.playerStats{
+  min-width: 250px;
+  text-align: center;
+
+}
 .chat-box{
   background-color: white;
   min-height: 100px;
