@@ -31,17 +31,18 @@ $(document).ready(function() {
         
             console.log("here we need to set the game");
             console.log("you = ")
-            console.log(you);
+           
 
             console.log("playersExist = " + playersExist);
+        if (!gameset) {    
             if (playersExist) {
                 if (player1Exists && !player2Exists) {
                     console.log("player1 exists, but not player2");
-                    Player2.set(you);
+                    Player2.set(opponent);
 
                 } else if (player2Exists && !player1Exists) {
                     console.log("player2 exists, but not player1");
-                    Player1.set(you);
+                    Player1.set(opponent);
                 } else if (player1Exists && player2Exists) {
                     $('#newPlayer').hide();
                 }
@@ -51,7 +52,8 @@ $(document).ready(function() {
             }
             console.log("player1Exists = " + player1Exists);
             console.log("player2Exists = " + player2Exists);
-            
+            gameset = true;
+        }    
 
         return false;
 
@@ -68,11 +70,12 @@ $(document).ready(function() {
                 $('#P1').html(playerName)
                 $('#playerName').val("");
                 $('#newPlayer').hide();
-                var you = {
+                you = {
                     name: playerName,
                     choice: '',
                     wins: 0,
-                    losses: 0
+                    losses: 0,
+                    user : true
                 }
                 Player1.set(you)
 
@@ -81,7 +84,7 @@ $(document).ready(function() {
                 $('#P2').html(playerName)
                 $('#playerName').val("");
                 $('#newPlayer').hide();
-                var you = {
+                you = {
                     name: playerName,
                     choice: '',
                     wins: 0,
@@ -98,6 +101,7 @@ $(document).ready(function() {
 
     Players.on("value", function(snapshot) {
             console.log("-----start of players------")
+            
             console.log("Players exists...")
             console.log(snapshot.exists());
             if (snapshot.exists()) {
@@ -113,9 +117,8 @@ $(document).ready(function() {
                     console.log(snapshot.exists());
                     if (snapshot.exists()) {
                         player1Exists = true;
-                        gamer1 = snapshot.val();
-                        console.log(gamer1)
-                        $('#P1').html(gamer1.name);
+                        opponent = snapshot.val();
+                        $('#P1').html(opponent.name);
                     }
                     console.log("Player1 snapshot value")
                     console.log(snapshot.val());
@@ -130,8 +133,8 @@ $(document).ready(function() {
                     console.log(snapshot.exists());
                     if (snapshot.exists()) {
                         player2Exists = true;
-                        gamer2 = snapshot.val();
-                        $('#P2').html(gamer2.name);
+                        opponent = snapshot.val();
+                        $('#P2').html(opponent.name);
                     }
                     console.log("Player2 snapshot value")
                     console.log(snapshot.val());
