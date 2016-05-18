@@ -1,0 +1,21 @@
+
+game setup
+
+if no players exist - remove everthing from firebase
+	add new player to player1 via submit button 
+	add 1 to playerTotal
+
+if player1 exists - and playerTotal = 1
+	add new player to Player2 via submit button
+	add 1 to playerTotal
+
+if player2 exists - and playerTotal = 1
+	add new player to Player1 via submit button
+	add 1 to playerTotal
+
+if playerTotal = 2
+	remove option to add new players
+
+when snapshots are changed -- I need to set local variables
+	Player...
+	Opponent...
