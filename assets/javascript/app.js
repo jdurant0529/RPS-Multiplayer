@@ -5,55 +5,46 @@ $(document).ready(function() {
     var Player1 = Players.child("Player1");
     var Player2 = Players.child("Player2");
 
-
-    var you = {};
-
-    var opponent = {};
-    var playerNum = '';
-
-    var gamer1 = {};
+    var user = 0;
 
     var playersExist = false;
+
     var player1Exists = false;
+    var Player1Data = {};
     var player2Exists = false;
-    var youExist = false;
-    var opponentExists = false;
-
+    var Player2Data = {};
     var gameset = false;
-
-    console.log("you = ")
-    console.log(you);
 
     //game setup
     function gameSetup() {
 
         console.log(gameset);
-        
-            console.log("here we need to set the game");
-            console.log("you = ")
-           
 
-            console.log("playersExist = " + playersExist);
-        if (!gameset) {    
+        console.log("here we need to set the game");
+        console.log("you = ")
+
+
+        console.log("playersExist = " + playersExist);
+        if (!gameset) {
             if (playersExist) {
                 if (player1Exists && !player2Exists) {
                     console.log("player1 exists, but not player2");
-                    Player2.set(opponent);
+                    Player2.set(Player2Data);
+                    user = 1;
+
 
                 } else if (player2Exists && !player1Exists) {
                     console.log("player2 exists, but not player1");
-                    Player1.set(opponent);
+                    Player1.set(Player1Data);
+                    user = 2;
                 } else if (player1Exists && player2Exists) {
                     $('#newPlayer').hide();
                 }
-            } else {
-               	Player1.remove();
-                Player2.remove();
             }
             console.log("player1Exists = " + player1Exists);
             console.log("player2Exists = " + player2Exists);
             gameset = true;
-        }    
+        }
 
         return false;
 
@@ -75,9 +66,10 @@ $(document).ready(function() {
                     choice: '',
                     wins: 0,
                     losses: 0,
-                    user : true
+               
                 }
                 Player1.set(you)
+                user = 1;
 
             } else if (player1Exists) {
                 $('#playerNumber').html("<h3>Hi " + playerName + ", you are player 2</h3>");
@@ -91,6 +83,7 @@ $(document).ready(function() {
                     losses: 0
                 }
                 Player2.set(you)
+                user = 2;
             }
 
         }
@@ -101,7 +94,7 @@ $(document).ready(function() {
 
     Players.on("value", function(snapshot) {
             console.log("-----start of players------")
-            
+
             console.log("Players exists...")
             console.log(snapshot.exists());
             if (snapshot.exists()) {
@@ -117,8 +110,8 @@ $(document).ready(function() {
                     console.log(snapshot.exists());
                     if (snapshot.exists()) {
                         player1Exists = true;
-                        opponent = snapshot.val();
-                        $('#P1').html(opponent.name);
+                        Player1Data = snapshot.val();
+                        $('#P1').html(Player1Data.name);
                     }
                     console.log("Player1 snapshot value")
                     console.log(snapshot.val());
@@ -133,8 +126,8 @@ $(document).ready(function() {
                     console.log(snapshot.exists());
                     if (snapshot.exists()) {
                         player2Exists = true;
-                        opponent = snapshot.val();
-                        $('#P2').html(opponent.name);
+                        Player2Data = snapshot.val();
+                        $('#P2').html(Player2Data.name);
                     }
                     console.log("Player2 snapshot value")
                     console.log(snapshot.val());
@@ -145,13 +138,21 @@ $(document).ready(function() {
             gameSetup();
         }) // end of players on value function
 
+    $(window).unload(function() {
+        console.log('start of page unload.');
+        console.log('user = ' + user);
 
+        if (user == 1) {
+            console.log("you were player 1.  Player 1 has left the game").
+            Player1.remove();
+        } else if (user == 2) {
+            console.log("you were player 2.  player 2 has left the game.")
+            Player2.remove();
+        }
+        console.log('end of page unload');
+    });
 
 
 
     $(document).on('click', '#submit', newPlayer);
-
-    // $( window ).load(function() {
-    //         console.log( "window loaded" );
-    //     })
 })
