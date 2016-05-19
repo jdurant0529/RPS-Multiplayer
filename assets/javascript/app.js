@@ -41,9 +41,10 @@ $(document).ready(function() {
                 } else if (player1Exists && player2Exists) {
                     $('#newPlayer').hide();
                 }
-            } else {
-                chats.remove();
-            }
+            } 
+            //else {
+            //     chats.remove();
+            // }
             console.log("player1Exists = " + player1Exists);
             console.log("player2Exists = " + player2Exists);
             gameset = true;
@@ -120,57 +121,59 @@ $(document).ready(function() {
 
 
 
-    Players.on("child_added", function(childSnapshot) {
+    Players.on("value", function(snapshot) {
             console.log("-----start of players------")
 
             console.log("Players exists...")
-            console.log(childSnapshot.exists());
-            if (childSnapshot.exists()) {
+            console.log(snapshot.exists());
+            if (snapshot.exists()) {
                 playersExist = true;
             }
             console.log("Players snapshot value")
-            console.log(childSnapshot.val());
+            console.log(snapshot.val());
             console.log("-----end of players-----")
 
-           
+
 
             gameSetup();
         }) // end of players on value function
-     Player1.on("value", function(snapshot) {
-                    console.log("------start of player1------")
-                    console.log("Player1 exists...")
-                    console.log(snapshot.exists());
-                    if (snapshot.exists()) {
-                        player1Exists = true;
-                        Player1Data = snapshot.val();
-                        $('#P1').html(Player1Data.name);
-                    }
-                    console.log("Player1 snapshot value")
-                    console.log(snapshot.val());
-                    // console.log(snapshot.val().name);
-                    console.log("------end of player1------")
 
-                }) //end of player1 value
 
-            Player2.on("value", function(snapshot) {
-                    console.log("------start of player2------")
-                    console.log("Player2 exists...")
-                    console.log(snapshot.exists());
-                    if (snapshot.exists()) {
-                        player2Exists = true;
-                        Player2Data = snapshot.val();
-                        $('#P2').html(Player2Data.name);
-                    }
-                    console.log("Player2 snapshot value")
-                    console.log(snapshot.val());
-                    console.log("------end of player2------")
+    Player1.on("value", function(snapshot) {
+            console.log("------start of player1------")
+            console.log("Player1 exists...")
+            console.log(snapshot.exists());
+            if (snapshot.exists()) {
+                player1Exists = true;
+                Player1Data = snapshot.val();
+                $('#P1').html(Player1Data.name);
+            }
+            console.log("Player1 snapshot value")
+            console.log(snapshot.val());
+            // console.log(snapshot.val().name);
+            console.log("------end of player1------")
 
-                }) //end of player2 value
+        }) //end of player1 value
 
-   chat.on("child_added", function(childSnapshot) {
+    Player2.on("value", function(snapshot) {
+            console.log("------start of player2------")
+            console.log("Player2 exists...")
+            console.log(snapshot.exists());
+            if (snapshot.exists()) {
+                player2Exists = true;
+                Player2Data = snapshot.val();
+                $('#P2').html(Player2Data.name);
+            }
+            console.log("Player2 snapshot value")
+            console.log(snapshot.val());
+            console.log("------end of player2------")
+
+        }) //end of player2 value
+
+    chat.on("child_added", function(childSnapshot) {
         console.log(childSnapshot.val());
         $('.chat-box').append(childSnapshot.val())
-    })
+    }) // end of chat -- child_added
 
     $(window).unload(function() {
         console.log('start of page unload.');
