@@ -21,12 +21,10 @@
         <!-- *************************************************** -->
         <div class='row' id='newPlayer'>
             <form class="form-horizontal">
-                <div class="form-group col-md-9 col-md-push-3">
-                    <label for="playerName" class="col-md-2 control-label">Player Name:</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control col-md-4" id="playerName" placeholder="Name" autocomplete="off" style="cursor: pointer;">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-sm col-md-2" id='submit'>Submit</button>
+                <div class="form-group">
+                    <label for="playerName" class="control-label">Player Name:</label>
+                    <input type="text" class="form-control " id="playerName" placeholder="Name" autocomplete="off" style="cursor: pointer;">
+                    <button type="submit" class="btn btn-primary btn-sm" id='submit'>Submit</button>
                 </div>
             </form>
         </div>
@@ -40,56 +38,64 @@
         </div>
         <!-- end of row for game status, i.e. waiting for which player to choose or waiting for new player. -->
         <div class='row'>
-            <div class='col-lg-4 left playerStats'>
+            <div class='col-lg-4 left player1Stats'>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title" id='P1'>Waiting for Player 1</h3>
                         <!-- player Name goes here -->
                     </div>
                     <div class="panel-body">
-                        <div id='choices'>
-                            <p>Rock</p>
-                            <p>Paper</p>
-                            <p>Scissors</p>
+                        <div id='choices1'>
+                            <!-- <div id = "r1"><p>Rock</p></div>
+                            <div id = "p1"><p>Paper</p></div>
+                            <div id = "s1"><p>Scissors</p></div> -->
                         </div>
-                        <div id='p1Record'>
+                        <div class='records'>
+                            <div id="player1wins"></div>
+                            <div id="player1losses"></div>       
                         </div>
                     </div>
                 </div>
             </div>
             <div class='col-lg-4 center'>
             </div>
-            <div class='col-lg-4 right playerStats'>
+            <div class='col-lg-4 right player2Stats'>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title" id='P2'>Waiting for Player 2</h3>
                         <!-- player 2 name goes here -->
                     </div>
-                    <div class="panel-body">
-                        <div id='choices'>
-                            <p>Rock</p>
-                            <p>Paper</p>
-                            <p>Scissors</p>
+                   <div class="panel-body">
+                        <div id='choices2'>
+                            <!-- <div id = "r2"><p>Rock</p></div>
+                            <div id = "p2"><p>Paper</p></div>
+                            <div id = "s2"><p>Scissors</p></div> -->
                         </div>
-                        <div id='p2Record'>
+                        <div class='records'>
+                            <div id="player2wins"></div>
+                            <div id="player2losses"></div>       
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- end of row for status and options for players -->
-        
-
-        <div class='chat-box'>  <!-- chat box -->
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <input type="text" class="form-control" id="chatText">
-                <span class="input-group-btn">
-      					<button class="btn btn-default" type="button" id = 'sendChat'>Send</button>
-    					</span>
+        <div id='chat-area'>
+            <div class='chat-box'>
+                <!-- chat box -->
             </div>
-        </div>  <!-- end of chat box -->
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="chatText">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id = 'sendChat'>Send</button>
+                        </span>
+                </div>
+            </div>
+            <!-- end of chat box -->
+        </div>
+        <!-- end of chat area
+ -->
         <!-- *************************************************** -->
         <footer>
             <!-- start of footer -->

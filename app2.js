@@ -1,7 +1,7 @@
-var myDataRef = new Firebase('https://multi-rps.firebaseio.com/');
-var chatData = new Firebase('https://multi-rps.firebaseio.com/chat');
-var playersRef = new Firebase('https://multi-rps.firebaseio.com/players');
-var currentTurnRef = new Firebase('https://multi-rps.firebaseio.com/turn');
+var myDataRef = new Firebase("https://rps-jrd.firebaseio.com/");
+var chatData = new Firebase('https://rps-jrd.firebaseio.com/chat');
+var playersRef = new Firebase('https://rps-jrd.firebaseio.com/players');
+var currentTurnRef = new Firebase('https://rps-jrd.firebaseio.com/turn');
 
 var username = "Guest";
 var currentPlayers = null;
@@ -239,7 +239,7 @@ playersRef.on('child_added', function(snapshot) {
 function getInGame() {
   //For adding disconnects to the chat with a unique id (the date/time the user entered the game)
   //Needed because Firebase's '.push()' creates its unique keys client side, so you cant '.push()' in a '.onDisconnect'
-  var chatDataDisc = new Firebase('https://multi-rps.firebaseio.com/chat/' + Date.now());
+  var chatDataDisc = new Firebase('https://rps-jrd.firebaseio.com/chat/' + Date.now());
 
   //checks for current players, if theres a player one connected, then the user becomes player 2.
   //if there is no player one, then the user becomes player 1
@@ -251,7 +251,7 @@ function getInGame() {
     }
 
     //creates key based on assigned player number
-    playerRef = new Firebase('https://multi-rps.firebaseio.com/players/' + playerNum);
+    playerRef = new Firebase('https://rps-jrd.firebaseio.com/players/' + playerNum);
 
     //creates player object. 'choice' is unnecessary here, but I left it in to be as complete as possible
     playerRef.set({

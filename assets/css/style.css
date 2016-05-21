@@ -1,42 +1,60 @@
-.wrapper{
-  max-width:1000px;
-  margin: 0 auto;
-}
-body { 
-  
-}
-header{
-  margin: 0 auto;
-  text-align: center;
+.wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.playerStats{
-  min-width: 250px;
-  text-align: center;
+body {
 
 }
+
+header {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#newPlayer {
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+
+.player1Stats, .player2Stats{
+    min-width: 250px;
+    text-align: center;
+}
+
+.chat-box {
+    background-color: white;
+    min-height: 100px;
+    border-bottom-color: #2F4F4F;
+    border-bottom: 5px;
+    clear: both;
+    border-style: solid;
+    color: #2F4F4F;
+}
+
 .chat-box{
-  background-color: white;
-  min-height: 100px;
-  border-bottom-color: #2F4F4F;
-  border-bottom: 5px;
-  clear:both;
-  border-style: solid;
-  color: #2F4F4F;
-  
+    height: 150px;
+}
+#chat-area {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-footer{
-  width:100%;
-  text-align: center;
-  clear: both;
+footer {
+    width: 100%;
+    text-align: center;
+    clear: both;
 }
-.right{
-  float:right;
+
+.right {
+    float: right;
 }
-.left{
-  float:left;
+
+.left {
+    float: left;
 }
-.clearfix{
-  clear:both;
+
+.clearfix {
+    clear: both;
 }

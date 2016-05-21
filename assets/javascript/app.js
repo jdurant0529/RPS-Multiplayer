@@ -1,10 +1,11 @@
-$(document).ready(function() {
+
 
     // var gameData = new Firebase("https://rps-jrd.firebaseio.com/")
-    var Players = new Firebase("https://rps-jrd.firebaseio.com/");
+    var Game = new Firebase("https://rps-jrd.firebaseio.com/");
+    var Players = Game.child("Players");
     var Player1 = Players.child("Player1");
     var Player2 = Players.child("Player2");
-    var chat = Players.child("chats");
+    var chat = Game.child("chat");
 
     var user = 0;
 
@@ -117,6 +118,10 @@ $(document).ready(function() {
 
         }
         return false;
+
+        Players.child("Player1").onDisconnect().remove();
+        Players.child("Player2").onDisconnect().remove();
+
     } // end of newPLayer function
 
 
@@ -133,7 +138,7 @@ $(document).ready(function() {
             console.log(snapshot.val());
             console.log("-----end of players-----")
 
-
+          
 
             gameSetup();
         }) // end of players on value function
@@ -170,26 +175,26 @@ $(document).ready(function() {
 
         }) //end of player2 value
 
-    chat.on("child_added", function(childSnapshot) {
-        console.log(childSnapshot.val());
-        $('.chat-box').append(childSnapshot.val())
+    chat.on("child_added", function(snapshot) {
+        console.log(snapshot.val());
+        $('.chat-box').append(snapshot.val())
     }) // end of chat -- child_added
 
-    $(window).unload(function() {
-        console.log('start of page unload.');
-        console.log('user = ' + user);
+    // $(window).unload(function() {
+    //     console.log('start of page unload.');
+    //     console.log('user = ' + user);
 
-        if (user == 1) {
-            console.log("you were player 1.  Player 1 has left the game").
-            Players.child("Player1").remove();
-        } else if (user == 2) {
-            console.log("you were player 2.  player 2 has left the game.")
-            Player1.remove();
-        }
-        console.log('end of page unload');
-    });
+    //     if (user == 1) {
+    //         console.log("you were player 1.  Player 1 has left the game").
+    //         Player1.remove();
+    //     } else if (user == 2) {
+    //         console.log("you were player 2.  player 2 has left the game.")
+    //         Player2.remove();
+    //     }
+    //     console.log('end of page unload');
+    // });
 
     $(document).on('click', '#submit', newPlayer);
 
     $(document).on('click', '#sendChat', newChat);
-})
+
